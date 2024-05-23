@@ -1,11 +1,11 @@
 pkgbase = wine-git
 	pkgdesc = A compatibility layer for running Windows programs (git version)
-	pkgver = 9.1.r52.ge3431a02e1d
+	pkgver = 9.9.r71.g1bccb4cf9a5
 	pkgrel = 1
 	url = https://www.winehq.org/
 	install = wine-git.install
 	arch = x86_64
-	license = LGPL
+	license = LGPL-2.1-or-later
 	makedepends = git
 	makedepends = perl
 	makedepends = mingw-w64-gcc
@@ -107,9 +107,9 @@ pkgbase = wine-git
 	optdepends = lib32-v4l-utils
 	optdepends = wine-gecko
 	optdepends = wine-mono
-	provides = wine=9.1.r52.ge3431a02e1d
-	provides = bin32-wine=9.1.r52.ge3431a02e1d
-	provides = wine-wow64=9.1.r52.ge3431a02e1d
+	provides = wine=9.9.r71.g1bccb4cf9a5
+	provides = bin32-wine=9.9.r71.g1bccb4cf9a5
+	provides = wine-wow64=9.9.r71.g1bccb4cf9a5
 	conflicts = wine
 	conflicts = bin32-wine
 	conflicts = wine-wow64
