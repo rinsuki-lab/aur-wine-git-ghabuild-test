@@ -1,6 +1,6 @@
 pkgbase = wine-git
 	pkgdesc = A compatibility layer for running Windows programs (git version)
-	pkgver = 9.9.r71.g1bccb4cf9a5
+	pkgver = 9.19.r0.g7ee99608f46
 	pkgrel = 1
 	url = https://www.winehq.org/
 	install = wine-git.install
@@ -107,9 +107,9 @@ pkgbase = wine-git
 	optdepends = lib32-v4l-utils
 	optdepends = wine-gecko
 	optdepends = wine-mono
-	provides = wine=9.9.r71.g1bccb4cf9a5
-	provides = bin32-wine=9.9.r71.g1bccb4cf9a5
-	provides = wine-wow64=9.9.r71.g1bccb4cf9a5
+	provides = wine=9.19.r0.g7ee99608f46
+	provides = bin32-wine=9.19.r0.g7ee99608f46
+	provides = wine-wow64=9.19.r0.g7ee99608f46
 	conflicts = wine
 	conflicts = bin32-wine
 	conflicts = wine-wow64
