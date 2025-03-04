@@ -3,7 +3,7 @@
 # Contributor: sxe <sxxe@gmx.de>
 
 pkgname=wine-git
-pkgver=9.19.r0.g7ee99608f46
+pkgver=10.2.r193.g6e6334d4293
 pkgrel=1
 pkgdesc='A compatibility layer for running Windows programs (git version)'
 arch=('x86_64')
@@ -23,14 +23,14 @@ depends=(
     'libxrandr'       'lib32-libxrandr'
     'wayland'         'lib32-wayland'
 )
-makedepends=('git' 'perl' 'mingw-w64-gcc'
+makedepends=('perl' 'mingw-w64-gcc'
+    'git'
     'alsa-lib'              'lib32-alsa-lib'
     'gnutls'                'lib32-gnutls'
     'gst-plugins-base-libs' 'lib32-gst-plugins-base-libs'
     'libcups'               'lib32-libcups'
     'libgphoto2'
     'libpulse'              'lib32-libpulse'
-    'libxcomposite'         'lib32-libxcomposite'
     'libxcomposite'         'lib32-libxcomposite'
     'libxinerama'           'lib32-libxinerama'
     'libxxf86vm'            'lib32-libxxf86vm'
@@ -71,7 +71,6 @@ optdepends=(
     'v4l-utils'             'lib32-v4l-utils'
     'wine-gecko'
     'wine-mono'
-
 )
 options=('staticlibs' '!lto')
 install="${pkgname}.install"
@@ -121,7 +120,7 @@ build() {
     export PKG_CONFIG_PATH='/usr/lib32/pkgconfig'
     ../wine/configure \
         --prefix='/usr' \
-        --libdir='/usr/lib32' \
+        --libdir='/usr/lib' \
         --with-x \
         --with-wayland \
         --with-gstreamer \
@@ -135,8 +134,8 @@ package() {
     printf '%s\n' '  -> Packaging wine-32...'
     cd build-32
     make prefix="${pkgdir}/usr" \
-         libdir="${pkgdir}/usr/lib32" \
-         dlldir="${pkgdir}/usr/lib32/wine" \
+         libdir="${pkgdir}/usr/lib" \
+         dlldir="${pkgdir}/usr/lib/wine" \
          install
     
     # package wine 64-bit
