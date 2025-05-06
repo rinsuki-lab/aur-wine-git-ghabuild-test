@@ -1,0 +1,49 @@
+name: Build Package
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:base-devel
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Required for git describe
+
+      - name: Setup multilib repository
+        run: |
+          echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+          pacman-key --init
+          pacman-key --populate archlinux
+          pacman -Sy
+
+      - name: Install dependencies
+        run: |
+          pacman --noconfirm -Syu
+          pacman --noconfirm -S git sudo fakeroot binutils
+
+      - name: Prepare to build package
+        run: |
+          # Create build user
+          useradd -m builder
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          chown -R builder:builder .
+          
+          # Install deps and download sources as non-root user
+          sudo -u builder bash -c 'makepkg -so --noconfirm'
+      - name: Build package
+        run: |
+          # Build package as non-root user
+          sudo -u builder bash -c 'makepkg -e --noconfirm'
+
+      - name: Upload package
+        uses: actions/upload-artifact@v4
+        with:
+          name: wine-git-package
+          path: "*.pkg.tar.zst"
+          if-no-files-found: error
