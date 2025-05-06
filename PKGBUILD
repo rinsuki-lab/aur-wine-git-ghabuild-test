@@ -77,7 +77,7 @@ install="${pkgname}.install"
 provides=("wine=${pkgver}" "bin32-wine=${pkgver}" "wine-wow64=${pkgver}")
 conflicts=('wine' 'bin32-wine' 'wine-wow64')
 replaces=('bin32-wine')
-source=('git+https://gitlab.winehq.org/wine/wine.git'
+source=('git+https://gitlab.winehq.org/sgwaki/wine.git#branch=fix.d2d1_crash'
         '30-win32-aliases.conf'
         'wine-binfmt.conf')
 sha256sums=('SKIP'
