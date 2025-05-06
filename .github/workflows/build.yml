@@ -39,7 +39,7 @@ jobs:
       - name: Build package
         run: |
           # Build package as non-root user
-          sudo -u builder bash -c 'makepkg -e --noconfirm'
+          sudo -u builder bash -c 'MAKEFLAGS="-j$(nproc)" makepkg -e --noconfirm'
 
       - name: Upload package
         uses: actions/upload-artifact@v4
